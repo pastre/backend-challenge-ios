@@ -7,56 +7,6 @@
 //
 
 import Foundation
-protocol simpleModel: Codable {
-    
-}
-struct UserData: Codable {
-    var username: String!
-    var password: String!
-}
-
-struct User: Codable {
-    var username: String!
-    var email: String!
-    var id: Int
-}
-
-struct Reflection: Codable {
-    var content: String!
-    var createdAt: Date!
-    var owner: User!
-    var isPublic: Bool!
-}
-
-
-
-enum APIError: Error {
-    case failedToParseJSON
-    case wrongMethod(Int)
-    case runtimeError(String)
-}
-
-enum HTTPMethod: String {
-    case GET
-    case POST
-}
-enum Endpoint: String {
-    
-    case reflections
-    case auth
-    
-    func getURL() -> URL {
-        return URL(string:
-//            "https://ada-backend-challenge.herokuapp.com/api/"
-        "http://192.168.100.34:8000/api/"
-            + self.rawValue)!
-    }
-    
-}
-
-protocol Response {
-    var payload: Data! { get }
-}
 
 
 class APIFacade {

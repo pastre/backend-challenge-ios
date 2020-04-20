@@ -14,6 +14,8 @@
 		D7A6375B244E3EC400E6FED4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A6375A244E3EC400E6FED4 /* Preview Assets.xcassets */; };
 		D7A6375E244E3EC400E6FED4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7A6375C244E3EC400E6FED4 /* LaunchScreen.storyboard */; };
 		D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63766244E3EF000E6FED4 /* APIFacade.swift */; };
+		D7A6376A244E5B4E00E6FED4 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63769244E5B4E00E6FED4 /* Enums.swift */; };
+		D7A6376C244E5B7300E6FED4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A6376B244E5B7300E6FED4 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		D7A6375F244E3EC400E6FED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7A63766244E3EF000E6FED4 /* APIFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFacade.swift; sourceTree = "<group>"; };
 		D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReflectionsApp.entitlements; sourceTree = "<group>"; };
+		D7A63769244E5B4E00E6FED4 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		D7A6376B244E5B7300E6FED4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				D7A63766244E3EF000E6FED4 /* APIFacade.swift */,
+				D7A63769244E5B4E00E6FED4 /* Enums.swift */,
+				D7A6376B244E5B7300E6FED4 /* Models.swift */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -161,6 +167,8 @@
 			files = (
 				D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */,
 				D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */,
+				D7A6376A244E5B4E00E6FED4 /* Enums.swift in Sources */,
+				D7A6376C244E5B7300E6FED4 /* Models.swift in Sources */,
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
 				D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */,
 			);
