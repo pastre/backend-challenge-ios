@@ -13,6 +13,7 @@
 		D7A63758244E3EC400E6FED4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A63757244E3EC400E6FED4 /* Assets.xcassets */; };
 		D7A6375B244E3EC400E6FED4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A6375A244E3EC400E6FED4 /* Preview Assets.xcassets */; };
 		D7A6375E244E3EC400E6FED4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7A6375C244E3EC400E6FED4 /* LaunchScreen.storyboard */; };
+		D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63766244E3EF000E6FED4 /* APIFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		D7A6375A244E3EC400E6FED4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D7A6375D244E3EC400E6FED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7A6375F244E3EC400E6FED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7A63766244E3EF000E6FED4 /* APIFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFacade.swift; sourceTree = "<group>"; };
+		D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReflectionsApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,8 @@
 		D7A63750244E3EC100E6FED4 /* ReflectionsApp */ = {
 			isa = PBXGroup;
 			children = (
+				D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */,
+				D7A63765244E3ED700E6FED4 /* networking */,
 				D7A63751244E3EC100E6FED4 /* AppDelegate.swift */,
 				D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */,
 				D7A63755244E3EC100E6FED4 /* ContentView.swift */,
@@ -73,6 +78,14 @@
 				D7A6375A244E3EC400E6FED4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D7A63765244E3ED700E6FED4 /* networking */ = {
+			isa = PBXGroup;
+			children = (
+				D7A63766244E3EF000E6FED4 /* APIFacade.swift */,
+			);
+			path = networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */,
 				D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */,
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
 				D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */,
@@ -284,6 +298,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ReflectionsApp/ReflectionsApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ReflectionsApp/Preview Content\"";
 				DEVELOPMENT_TEAM = QM43B7QRF9;
@@ -295,6 +310,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.ReflectionsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,6 +320,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ReflectionsApp/ReflectionsApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ReflectionsApp/Preview Content\"";
 				DEVELOPMENT_TEAM = QM43B7QRF9;
@@ -315,6 +332,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pastre.github.io.ReflectionsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
