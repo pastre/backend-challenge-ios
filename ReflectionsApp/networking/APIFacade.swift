@@ -64,6 +64,29 @@ class APIFacade {
         
     }
     
+    
+    func validateAndCompleteRequest<T: Codable>(data: Data?, error: Error?, completion: @escaping (T?, Error?) -> ()) {
+        
+        guard let data = data else {
+            completion(nil, error)
+            return
+        }
+        
+        guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+            fatalError("troxa")
+        }
+        
+        completion(decoded, nil)
+    }
+    
+    // User related methods
+    
+    func getAllUsers( completion: @escaping ([User]?, Error?) -> () ) {
+        self.request(.users, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
     func createUser(username: String, password: String, email: String, completion: @escaping (User?, Error?) -> () ) {
         
         let body = try! JSONEncoder().encode(
@@ -75,34 +98,20 @@ class APIFacade {
         
         self.request(.users, .POST, body: body) { (data, error) in
             
-            guard let data = data else {
-                completion(nil, error)
-                return
-            }
-            
-            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                fatalError("troxa")
-            }
-            
-            completion(user, nil)
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
 
         }
     }
     
     func authenticate(username: String, password: String, completion: @escaping (User?, Error?) -> () ) {
-        let body = try! JSONEncoder().encode([ "username":username, "password":password ])
+        let body = try! JSONEncoder().encode([ "username":username,
+            "password":password
+        ])
         
         self.request(.auth, .POST, body: body) { (data, error) in
-            guard let data = data else {
-                completion(nil, error)
-                return
-            }
             
-            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                fatalError("troxa")
-            }
-            
-            completion(user, nil)
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+
         }
     }
 }

@@ -14,8 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        APIFacade.instance.createUser(username: "asd", password: "qwe", email: "p@a.com"){ (user, error) in
-            print(user, error)
+        APIFacade.instance.createUser(username: "asdq", password: "qwe", email: "p@a.com"){ (user, error) in
+            APIFacade.instance.getAllUsers { (users, error) in
+                print(users, error)
+            }
         }
         return true
     }
