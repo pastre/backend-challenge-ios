@@ -40,7 +40,7 @@ class APIFacade {
             }
             
             guard let deserialized = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                
+                print("OPS!", String(data: data, encoding: .utf8))
                 completion(nil, APIError.failedToParseJSON)
                 return
                 
@@ -64,6 +64,31 @@ class APIFacade {
         
     }
     
+    func createUser(username: String, password: String, email: String, completion: @escaping (User?, Error?) -> () ) {
+        
+        let body = try! JSONEncoder().encode(
+            [
+                "username": username,
+                "password": password,
+                "email":email
+            ])
+        
+        self.request(.users, .POST, body: body) { (data, error) in
+            
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let user = try? JSONDecoder().decode(User.self, from: data) else {
+                fatalError("troxa")
+            }
+            
+            completion(user, nil)
+
+        }
+    }
+    
     func authenticate(username: String, password: String, completion: @escaping (User?, Error?) -> () ) {
         let body = try! JSONEncoder().encode([ "username":username, "password":password ])
         
@@ -78,10 +103,6 @@ class APIFacade {
             }
             
             completion(user, nil)
-            
         }
-        
     }
-    
-    
 }

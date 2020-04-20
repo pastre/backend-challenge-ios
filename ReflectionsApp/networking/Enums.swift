@@ -22,6 +22,7 @@ enum Endpoint: String {
     
     case reflections
     case auth
+    case users
     
     func getURL() -> URL {
         return URL(string:
