@@ -21,6 +21,7 @@ class APIFacade {
     func request(_ endpoint: Endpoint, _ method: HTTPMethod, body: Data? = nil, completion: @escaping (Data?, Error?) -> () ) {
         self.request(endpoint.getURL(), method, body: body, completion: completion)
     }
+    
     func request(_ url: URL, _ method: HTTPMethod, body: Data? = nil, completion: @escaping (Data?, Error?) -> () ) {
         
         var request = URLRequest(url:url)
@@ -135,7 +136,7 @@ class APIFacade {
         }
     }
     
-    // MARK: - Reflection related methods
+    // MARK: - User reflection methods
     
     func createReflection(content: String, isPublic: Bool = true, completion: @escaping (Reflection?, Error?) -> ()) {
         let body = try! JSONSerialization.data(withJSONObject: [
@@ -147,13 +148,24 @@ class APIFacade {
         }
     }
     
-    func getReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
+    func deleteReflection(reflectionId: Int, completion: @escaping ([Reflection]?, Error?) -> ()) {
+        let url = Endpoint.reflections.getURLString() + "/\(reflectionId)"
+        print("URL IS", url)
+        self.request(URL(string: url)!, .DELETE) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    
+    // MARK: - Public reflection  methods
+    func getAllReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
         
         self.request(.reflections, .GET) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
     }
     
+
     func getReflectionsInRange(startDate: Date, endDate: Date?, completion: @escaping ([Reflection]?, Error?) -> () ) {
         
         let dateFormatter = DateFormatter()
@@ -201,7 +213,7 @@ class TestAPIFacade {
     
     func testGetReflections() {
         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.getReflections { (reflections, error) in
+            APIFacade.instance.getAllReflections { (reflections, error) in
                 print(reflections, error)
             }
         }
@@ -216,6 +228,16 @@ class TestAPIFacade {
         }
 
     }
+    
+    func testDeleteReflection() {
+         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            
+            APIFacade.instance.deleteReflection(reflectionId: 1) { (reflections, error) in
+                print(reflections, error)
+            }
+        }
+    }
+    
     
     func testGetReflectionsInRange() {
         

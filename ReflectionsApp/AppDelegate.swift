@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        TestAPIFacade().testCreateReflection()
-        TestAPIFacade().testGetReflections()
+//        TestAPIFacade().testGetReflections()
+        TestAPIFacade().testDeleteReflection()
         
         return true
     }

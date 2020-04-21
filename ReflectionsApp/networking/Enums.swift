@@ -17,6 +17,7 @@ enum APIError: Error {
 enum HTTPMethod: String {
     case GET
     case POST
+    case DELETE
 }
 enum Endpoint: String {
     
@@ -31,6 +32,7 @@ enum Endpoint: String {
         "http://192.168.100.34:8000/api/"
             + self.rawValue
     }
+    
     
     func getURL() -> URL {
         if self == Endpoint.search {

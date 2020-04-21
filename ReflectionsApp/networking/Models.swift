@@ -24,4 +24,5 @@ struct Reflection: Codable {
     var createdAt: Date!
     var owner: User!
     var isPublic: Bool!
+    var id: Int!
 }
