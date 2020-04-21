@@ -10,15 +10,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.searchUser("a") { (users, error) in
-                print(users, error)
-            }
-        }
+        TestAPIFacade().testGetReflections()
+        
         return true
     }
 

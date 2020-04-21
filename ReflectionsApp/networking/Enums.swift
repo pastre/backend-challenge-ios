@@ -40,13 +40,4 @@ enum Endpoint: String {
 
     }
     
-    func getSearch(query: String) -> URL {
-        var url = URLComponents(string: Endpoint.users.getURLString())!
-        url.queryItems = [
-            URLQueryItem(name: "username", value: query)
-        ]
-        
-        return URL(string: url.percentEncodedQuery!.replacingOccurrences(of: "+", with: "%2B"))!
-    }
-    
 }

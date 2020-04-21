@@ -83,7 +83,7 @@ class APIFacade {
         completion(decoded, nil)
     }
     
-    // User related methods
+    // MARK: -  User related methods
     
     func searchUser(_ query: String, completion: @escaping ([User]?, Error?) -> () ) {
         
@@ -132,6 +132,44 @@ class APIFacade {
             
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
 
+        }
+    }
+    
+    // MARK: - Reflection related methods
+    
+    func getReflections(completion: @escaping (Reflection?, Error?) -> () ) {
+        
+        self.request(.reflections, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+}
+
+
+class TestAPIFacade {
+    func testSearchUsers() {
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.searchUser("a") { (users, error) in
+                print(users, error)
+            }
+        }
+    }
+    
+    
+    func testGetAllUsers() {
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getAllUsers { (users, error) in
+                print(users, error)
+            }
+        }
+    }
+    
+    
+    func testGetReflections() {
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getAllUsers { (reflections, error) in
+                print(reflections, error)
+            }
         }
     }
 }
