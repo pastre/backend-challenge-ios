@@ -94,7 +94,7 @@ class APIFacade {
         ]
         
         components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
-        print(components.url!)
+        
         self.request(components.url!, .GET) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
@@ -137,16 +137,52 @@ class APIFacade {
     
     // MARK: - Reflection related methods
     
-    func getReflections(completion: @escaping (Reflection?, Error?) -> () ) {
+    func createReflection(content: String, isPublic: Bool = true, completion: @escaping (Reflection?, Error?) -> ()) {
+        let body = try! JSONSerialization.data(withJSONObject: [
+            "content": content
+        ], options: [])
+        
+        self.request(.reflections, .POST, body: body) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    func getReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
         
         self.request(.reflections, .GET) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
     }
+    
+    func getReflectionsInRange(startDate: Date, endDate: Date?, completion: @escaping ([Reflection]?, Error?) -> () ) {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "ddMMyyyy"
+        
+        var params = [
+            URLQueryItem(name: "from", value: dateFormatter.string(from: startDate))
+        ]
+        
+        if let endDate = endDate {
+            params.append(URLQueryItem(name: "to", value: dateFormatter.string(from: endDate)))
+        }
+        var components = URLComponents(string: Endpoint.reflections.getURLString())!
+        
+        components.queryItems = params
+      
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        
+        self.request(components.url!, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+        
+    }
 }
 
 
 class TestAPIFacade {
+    
     func testSearchUsers() {
         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
             APIFacade.instance.searchUser("a") { (users, error) in
@@ -154,7 +190,6 @@ class TestAPIFacade {
             }
         }
     }
-    
     
     func testGetAllUsers() {
         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
@@ -164,12 +199,35 @@ class TestAPIFacade {
         }
     }
     
-    
     func testGetReflections() {
         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.getAllUsers { (reflections, error) in
+            APIFacade.instance.getReflections { (reflections, error) in
                 print(reflections, error)
             }
         }
+    }
+    
+    func testCreateReflection() {
+        
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.createReflection(content: "testeeee") { (reflections, error) in
+                print(reflections, error)
+            }
+        }
+
+    }
+    
+    func testGetReflectionsInRange() {
+        
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getReflectionsInRange(
+                startDate: Date(timeIntervalSince1970: 1586476800),
+                endDate: nil)//Date(timeIntervalSince1970: 1586563200))
+            { (reflections, error) in
+                
+                print(reflections, error)
+            }
+        }
+        
     }
 }
