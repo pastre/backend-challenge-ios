@@ -20,15 +20,33 @@ enum HTTPMethod: String {
 }
 enum Endpoint: String {
     
+    
     case reflections
     case auth
     case users
+    case search
+    
+    func getURLString() -> String {
+        //            "https://ada-backend-challenge.herokuapp.com/api/"
+        "http://192.168.100.34:8000/api/"
+            + self.rawValue
+    }
     
     func getURL() -> URL {
-        return URL(string:
-//            "https://ada-backend-challenge.herokuapp.com/api/"
-        "http://192.168.100.34:8000/api/"
-            + self.rawValue)!
+        if self == Endpoint.search {
+            
+        }
+        return URL(string: self.getURLString())!
+
+    }
+    
+    func getSearch(query: String) -> URL {
+        var url = URLComponents(string: Endpoint.users.getURLString())!
+        url.queryItems = [
+            URLQueryItem(name: "username", value: query)
+        ]
+        
+        return URL(string: url.percentEncodedQuery!.replacingOccurrences(of: "+", with: "%2B"))!
     }
     
 }

@@ -19,12 +19,16 @@ class APIFacade {
     }
     
     func request(_ endpoint: Endpoint, _ method: HTTPMethod, body: Data? = nil, completion: @escaping (Data?, Error?) -> () ) {
-        var request = URLRequest(url: endpoint.getURL())
+        self.request(endpoint.getURL(), method, body: body, completion: completion)
+    }
+    func request(_ url: URL, _ method: HTTPMethod, body: Data? = nil, completion: @escaping (Data?, Error?) -> () ) {
         
+        var request = URLRequest(url:url)
+
         request.httpMethod = method.rawValue
         request.httpBody = body
         
-        print("Body is", request.httpBody)
+        
         self.session.dataTask(with: request) { data, response, error in
             
             guard let data = data, let response = response as? HTTPURLResponse else {
@@ -80,6 +84,22 @@ class APIFacade {
     }
     
     // User related methods
+    
+    func searchUser(_ query: String, completion: @escaping ([User]?, Error?) -> () ) {
+        
+        var components = URLComponents(string: Endpoint.users.getURLString())!
+        
+        components.queryItems =  [
+            URLQueryItem(name: "username", value: query)
+        ]
+        
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        print(components.url!)
+        self.request(components.url!, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+
+    }
     
     func getAllUsers( completion: @escaping ([User]?, Error?) -> () ) {
         self.request(.users, .GET) { (data, error) in
