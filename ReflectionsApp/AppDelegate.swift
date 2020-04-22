@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        TestAPIFacade().testGetReflectionsByUser()
         
         if let bundleID = Bundle.main.bundleIdentifier {
-//            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
         }
         
         return true

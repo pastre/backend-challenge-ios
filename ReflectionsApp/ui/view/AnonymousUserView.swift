@@ -17,7 +17,7 @@ struct AnonymousUserView: View {
     @State private var username: String = ""
     
     
-    @ObservedObject private var model = AnonymousUserObservableObject()
+    @ObservedObject var model: AnonymousUserObservableObject// = AnonymousUserObservableObject()
     
     @State private var isCreatingAccount: Bool = true
     
@@ -82,10 +82,12 @@ struct AnonymousUserView: View {
                 }
                 .padding(.horizontal, 40)
                 
-            }.onAppear() {
+            }
+            .onAppear() {
                 self.updateAnonymousState()
             }
-        }.sheet(isPresented: .init(get: { () -> Bool in
+        }
+        .sheet(isPresented: .init(get: { () -> Bool in
             return !(self.model.isAnonymous ?? true)
         }, set: { (_) in
             
@@ -114,7 +116,7 @@ struct AnonymousUserView: View {
 
 struct AnonymousUserView_Previews: PreviewProvider {
     static var previews: some View {
-        AnonymousUserView()
+        AnonymousUserView(model: AnonymousUserObservableObject())
     }
 }
 

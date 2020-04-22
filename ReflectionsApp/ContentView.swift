@@ -11,9 +11,9 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isLoading: Bool = true
-    
+    @ObservedObject var anonymousModel = AnonymousUserObservableObject()
     var body: some View {
-        AnonymousUserView()
+        AnonymousUserView(model: self.anonymousModel)
     
     }
     

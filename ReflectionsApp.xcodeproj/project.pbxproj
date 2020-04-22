@@ -76,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				D7A63793244FCF2400E6FED4 /* ui */,
-				D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */,
 				D7A63765244E3ED700E6FED4 /* networking */,
 				D7A6379E2450BDAE00E6FED4 /* DataFacade.swift */,
 				D7A63751244E3EC100E6FED4 /* AppDelegate.swift */,
@@ -85,6 +84,7 @@
 				D7A63757244E3EC400E6FED4 /* Assets.xcassets */,
 				D7A6375C244E3EC400E6FED4 /* LaunchScreen.storyboard */,
 				D7A6375F244E3EC400E6FED4 /* Info.plist */,
+				D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */,
 				D7A63759244E3EC400E6FED4 /* Preview Content */,
 			);
 			path = ReflectionsApp;
