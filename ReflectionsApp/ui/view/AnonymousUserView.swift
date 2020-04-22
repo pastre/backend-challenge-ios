@@ -84,18 +84,9 @@ struct AnonymousUserView: View {
                 
             }.onAppear() {
                 self.updateAnonymousState()
-                
-                self.toggleMe.toggle()
             }
         }.sheet(isPresented: .init(get: { () -> Bool in
-            
-            if let isAnonymous = self.model.isAnonymous {
-                print("Decidiu! Anonimo? ", isAnonymous)
-                
-                return !isAnonymous
-            }
-            
-            return false
+            return !(self.model.isAnonymous ?? true)
         }, set: { (_) in
             
         })) {
