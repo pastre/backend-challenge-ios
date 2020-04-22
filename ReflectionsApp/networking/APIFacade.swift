@@ -156,10 +156,49 @@ class APIFacade {
         }
     }
     
+    func getSharedWith(_ reflectionId: Int, completion: @escaping ([User]?, Error?) -> ()) {
+        
+        let url = Endpoint.reflections.getURLString() + "/\(reflectionId)/share"
+        
+        
+        self.request(URL(string: url)!, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    
+    func shareReflection(_ reflectionId: Int, with users: [Int], completion: @escaping ([User]?, Error?) -> ()) {
+        
+        let url = Endpoint.reflections.getURLString() + "/\(reflectionId)/share"
+        let body = try! JSONSerialization.data(withJSONObject: [ "users" : users ], options: [])
+        
+        self.request(URL(string: url)!, .POST, body: body) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    func unshareReflection(_ reflectionId: Int, with users: [Int], completion: @escaping ([User]?, Error?) -> ()) {
+        
+        let url = Endpoint.reflections.getURLString() + "/\(reflectionId)/share"
+        let body = try! JSONSerialization.data(withJSONObject: [ "users" : users ], options: [])
+        
+        self.request(URL(string: url)!, .DELETE, body: body) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    func getReflection(_ userId: Int, completion: @escaping ([Reflection]?, Error?) -> ()) {
+        
+        let url = Endpoint.users.getURLString() + "/\(userId)/reflections"
+        
+        self.request(URL(string: url)!, .GET) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
     
     // MARK: - Public reflection  methods
     func getAllReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
-        
         self.request(.reflections, .GET) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
@@ -227,6 +266,44 @@ class TestAPIFacade {
             }
         }
 
+    }
+    
+    func testShareReflection() {
+         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            
+            APIFacade.instance.shareReflection(2, with: [1, 2, 3, 4]) { (users, error) in
+                print(users, error)
+            }
+        }
+    }
+    
+    func testGetSharedWith() {
+         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getSharedWith(2) { (users, error) in
+                print(users, error)
+            }
+        }
+    }
+    
+    func testUnshareReflection() {
+        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getSharedWith(2) { (users, error) in
+                print("SHARED WITH", users?.map { $0.id } )
+                APIFacade.instance.unshareReflection(2, with: [1, 2]) { (users, error) in
+                    print(users, error)
+                }
+            }
+        }
+    }
+    
+    func testGetReflectionsByUser(){
+        
+         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+            APIFacade.instance.getReflection(2) { (reflections, error) in
+                print(reflections, error)
+            }
+            
+        }
     }
     
     func testDeleteReflection() {

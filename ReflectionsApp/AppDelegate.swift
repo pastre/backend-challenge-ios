@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        TestAPIFacade().testCreateReflection()
 //        TestAPIFacade().testGetReflections()
-        TestAPIFacade().testDeleteReflection()
+//        TestAPIFacade().testDeleteReflection()
+        
+//        TestAPIFacade().testShareReflection()
+        
+//        TestAPIFacade().testUnshareReflection()
+        TestAPIFacade().testGetReflectionsByUser()
         
         return true
     }

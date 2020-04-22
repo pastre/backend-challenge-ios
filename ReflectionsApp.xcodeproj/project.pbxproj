@@ -63,6 +63,7 @@
 		D7A63750244E3EC100E6FED4 /* ReflectionsApp */ = {
 			isa = PBXGroup;
 			children = (
+				D7A63793244FCF2400E6FED4 /* ui */,
 				D7A63768244E4BE900E6FED4 /* ReflectionsApp.entitlements */,
 				D7A63765244E3ED700E6FED4 /* networking */,
 				D7A63751244E3EC100E6FED4 /* AppDelegate.swift */,
@@ -92,6 +93,29 @@
 				D7A6376B244E5B7300E6FED4 /* Models.swift */,
 			);
 			path = networking;
+			sourceTree = "<group>";
+		};
+		D7A63792244FCF1B00E6FED4 /* observable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = observable;
+			sourceTree = "<group>";
+		};
+		D7A63793244FCF2400E6FED4 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				D7A63792244FCF1B00E6FED4 /* observable */,
+				D7A63794244FCF2F00E6FED4 /* view */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		D7A63794244FCF2F00E6FED4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
