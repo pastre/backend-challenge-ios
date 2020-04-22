@@ -23,7 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        TestAPIFacade().testShareReflection()
         
 //        TestAPIFacade().testUnshareReflection()
-        TestAPIFacade().testGetReflectionsByUser()
+//        TestAPIFacade().testGetReflectionsByUser()
+        
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+        }
         
         return true
     }

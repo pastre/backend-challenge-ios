@@ -14,7 +14,7 @@ class APIFacade {
     
     var session: URLSession!
     
-    private init() {
+    init() {
         self.session = URLSession(configuration: .default)
     }
     

@@ -8,8 +8,9 @@
 
 import Foundation
 
-struct UserData: Codable {
+struct LocalUser: Codable {
     var username: String!
+    var email: String!
     var password: String!
 }
 
