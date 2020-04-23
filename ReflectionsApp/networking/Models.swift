@@ -22,10 +22,17 @@ struct User: Codable {
 
 struct Reflection: Codable {
 
-    
+    var title: String?
     var content: String!
     var createdAt: Date!
     var owner: User!
     var isPublic: Bool!
     var id: Int!
+    
+    func getFormattedTimestamp() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyy"
+        
+        return formatter.string(from: self.createdAt)
+    }
 }

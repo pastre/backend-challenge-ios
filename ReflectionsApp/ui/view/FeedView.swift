@@ -14,9 +14,8 @@ struct FeedView: View {
     
     var body: some View {
         List(self.model.reflections, id: \.id) { reflection in
-            Text(reflection.content)
-            
-        }
+            ReflectionView(reflection: reflection)
+            }
             .onAppear() {
                 self.model.fetchPublicReflections()
             }

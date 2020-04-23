@@ -138,11 +138,16 @@ class APIFacade {
     
     // MARK: - User reflection methods
     
-    func createReflection(content: String, isPublic: Bool = true, completion: @escaping (Reflection?, Error?) -> ()) {
-        let body = try! JSONSerialization.data(withJSONObject: [
+    func createReflection(title: String?,  content: String, isPublic: Bool = true, completion: @escaping (Reflection?, Error?) -> ()) {
+        var dict: [String: Any] = [
             "content": content,
             "isPublic": isPublic
-        ], options: [])
+        ]
+        if let title = title {
+            dict["title"] = title
+        }
+        
+        let body = try! JSONSerialization.data(withJSONObject: dict, options: [])
         
         self.request(.reflections, .POST, body: body) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
@@ -262,7 +267,7 @@ class TestAPIFacade {
     func testCreateReflection() {
         
         APIFacade.instance.authenticate(username: "pastrebru", password: "asdqwe123") { (user, error) in
-            APIFacade.instance.createReflection(content: "testeeee", isPublic: false) { (reflections, error) in
+            APIFacade.instance.createReflection(title: "test", content: "testeeee", isPublic: false) { (reflections, error) in
                 print(reflections, error)
             }
         }
