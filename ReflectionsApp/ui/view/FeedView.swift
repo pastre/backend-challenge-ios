@@ -10,13 +10,16 @@ import SwiftUI
 
 struct FeedView: View {
     
-    
+    @ObservedObject var model: ReflectionsObservableObject
     
     var body: some View {
-        Text("Feed")
-            .onAppear() {
-            print("To na area")
+        List(self.model.reflections, id: \.id) { reflection in
+            Text(reflection.content)
+            
         }
+            .onAppear() {
+                self.model.fetchPublicReflections()
+            }
     }
     
     

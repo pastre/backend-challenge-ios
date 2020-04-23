@@ -11,9 +11,21 @@ import Foundation
 class ReflectionsObservableObject: ObservableObject {
     
     private var dataFacade = DataFacade.instance
-    private var hasResolved: Bool = false
     
-    @Published var reflections: [Reflection]?
+    @Published var reflections: [Reflection] = []
+    @Published var isLoading: Bool = false
     
-    
+    func fetchPublicReflections() {
+        self.isLoading = self.reflections.isEmpty
+        self.objectWillChange.send()
+        
+        self.dataFacade.loadReflections(onLoad: { (reflections) in
+            self.reflections.append(contentsOf: reflections)
+            self.isLoading = false
+            self.objectWillChange.send()
+        }) { (error) in
+            print("Failed to fetch reflections!")
+        }
+        
+    }
 }

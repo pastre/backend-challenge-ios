@@ -21,6 +21,8 @@ struct User: Codable {
 }
 
 struct Reflection: Codable {
+
+    
     var content: String!
     var createdAt: Date!
     var owner: User!

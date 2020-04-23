@@ -80,10 +80,6 @@ class DataFacade {
         return self.storage.fetchModel(.localUser)
     }
     
-    func isAuthenticated() -> Bool {
-        return self.storage.isAuthenticated()
-    }
-    
     func login(_ username: String, _ password: String, completion:  @escaping (Bool) -> () ) {
         
         self.api.authenticate(username: username, password: password) { (user, error) in
@@ -120,6 +116,27 @@ class DataFacade {
             self.setLocalUser(to: localUser)
             
             completion(true)
+        }
+    }
+
+    func loadReflections(onLoad: @escaping ([Reflection]) -> () , onError: @escaping (Error) -> () ) {
+        guard let user = self.getUser() else { return }
+        self.api.getPublicReflections { (reflections, error) in
+            guard let reflections = reflections else {
+                onError(error!)
+                return 
+            }
+        
+            onLoad(reflections)
+        }
+        self.api.getUserReflections(user.id) { (reflections, error) in
+
+                guard let reflections = reflections else {
+                    onError(error!)
+                    return
+                }
+            
+                onLoad(reflections)
         }
     }
 }

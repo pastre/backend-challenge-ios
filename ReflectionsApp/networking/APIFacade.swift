@@ -140,7 +140,8 @@ class APIFacade {
     
     func createReflection(content: String, isPublic: Bool = true, completion: @escaping (Reflection?, Error?) -> ()) {
         let body = try! JSONSerialization.data(withJSONObject: [
-            "content": content
+            "content": content,
+            "isPublic": isPublic
         ], options: [])
         
         self.request(.reflections, .POST, body: body) { (data, error) in
@@ -187,7 +188,7 @@ class APIFacade {
         }
     }
     
-    func getReflection(_ userId: Int, completion: @escaping ([Reflection]?, Error?) -> ()) {
+    func getUserReflections(_ userId: Int, completion: @escaping ([Reflection]?, Error?) -> ()) {
         
         let url = Endpoint.users.getURLString() + "/\(userId)/reflections"
         
@@ -198,7 +199,7 @@ class APIFacade {
     
     
     // MARK: - Public reflection  methods
-    func getAllReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
+    func getPublicReflections(completion: @escaping ([Reflection]?, Error?) -> () ) {
         self.request(.reflections, .GET) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
@@ -252,7 +253,7 @@ class TestAPIFacade {
     
     func testGetReflections() {
         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.getAllReflections { (reflections, error) in
+            APIFacade.instance.getPublicReflections { (reflections, error) in
                 print(reflections, error)
             }
         }
@@ -260,8 +261,8 @@ class TestAPIFacade {
     
     func testCreateReflection() {
         
-        APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.createReflection(content: "testeeee") { (reflections, error) in
+        APIFacade.instance.authenticate(username: "pastrebru", password: "asdqwe123") { (user, error) in
+            APIFacade.instance.createReflection(content: "testeeee", isPublic: false) { (reflections, error) in
                 print(reflections, error)
             }
         }
@@ -269,7 +270,7 @@ class TestAPIFacade {
     }
     
     func testShareReflection() {
-         APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
+         APIFacade.instance.authenticate(username: "pastrebru", password: "asdqwe123") { (user, error) in
             
             APIFacade.instance.shareReflection(2, with: [1, 2, 3, 4]) { (users, error) in
                 print(users, error)
@@ -299,7 +300,7 @@ class TestAPIFacade {
     func testGetReflectionsByUser(){
         
          APIFacade.instance.authenticate(username: "asdq", password: "qwe") { (user, error) in
-            APIFacade.instance.getReflection(2) { (reflections, error) in
+            APIFacade.instance.getUserReflections(2) { (reflections, error) in
                 print(reflections, error)
             }
             
