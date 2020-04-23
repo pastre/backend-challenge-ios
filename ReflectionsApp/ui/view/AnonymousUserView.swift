@@ -11,10 +11,10 @@ import SwiftUI
 
 struct AnonymousUserView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email: String = "pastrebru@gmail.com"
+    @State private var password: String = "asdqwe123"
     @State private var confirmPassword: String = ""
-    @State private var username: String = ""
+    @State private var username: String = "pastrebru"
     
     
     @ObservedObject var model: AnonymousUserObservableObject// = AnonymousUserObservableObject()
@@ -28,7 +28,7 @@ struct AnonymousUserView: View {
     let lightGray = #colorLiteral(red: 0.9095294476, green: 0.9096819758, blue: 0.9095093608, alpha: 0.5617303671)
     
     private var isFormOk: Bool {
-        return self.username.count > 5 && self.password.count > 5 && self.email.count > 5 //&& self.password == self.confirmPassword
+        return self.isCreatingAccount ? self.username.count > 5 && self.password.count > 5 && self.email.count > 5 :  self.email.count > 5 && self.password.count > 5
     }
     
     var body: some View {
@@ -53,6 +53,7 @@ struct AnonymousUserView: View {
                         SecureField("Password", text: self.$password)
                             .padding()
                             .background(Color(self.lightGray))
+                            .cornerRadius(5)
                             .padding(.bottom, 5)
             
                         SecureField("Confirm your password", text: self.$confirmPassword)
@@ -72,8 +73,27 @@ struct AnonymousUserView: View {
                 .padding(.horizontal, 40)
                 } else {
                     VStack {
-                        Text("faz login ae")
+                        
+                        TextField("Username", text: self.$username)
+                        .padding()
+                        .background(Color(self.lightGray))
+                        .cornerRadius(5)
+                        .padding(.bottom, 10)
+                        
+                        SecureField("Password", text: self.$password)
+                            .padding()
+                            .background(Color(self.lightGray))
+                            .cornerRadius(5)
+                            .padding(.bottom, 20)
+                        
+                        Button(action: self.loginIfPossible) {
+                            Text("Login").fontWeight(.light)
+                        }
+                            .font(.title)
+                            .padding(.bottom, 60)
+                            .disabled(!self.isFormOk)
                     }
+                    .padding(.horizontal, 40)
                 }
 
                 Group {
@@ -95,6 +115,10 @@ struct AnonymousUserView: View {
     
     func createAccountIfPossible() {
         self.model.createAccount(self.username, email: self.email, password: self.password)
+    }
+    
+    func loginIfPossible() {
+        self.model.login(self.username, self.password)
     }
 }
 

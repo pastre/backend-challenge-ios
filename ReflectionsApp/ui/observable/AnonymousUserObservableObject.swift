@@ -10,6 +10,19 @@ import Foundation
 
 class AnonymousUserObservableObject: ObservableObject {
     
+    func login(_ username: String, _ password: String) {
+        self.isLoading = true
+        self.objectWillChange.send()
+        
+        self.dataFacade.login(username, password) { (success) in
+            if !success { return }
+            
+            self.resolveAuthentication()
+            self.isLoading = false
+            self.objectWillChange.send()
+        }
+    }
+    
     func createAccount(_ username: String, email: String, password: String) {
         self.isLoading = true
         self.objectWillChange.send()

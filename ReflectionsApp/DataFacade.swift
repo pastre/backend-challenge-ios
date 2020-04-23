@@ -84,6 +84,25 @@ class DataFacade {
         return self.storage.isAuthenticated()
     }
     
+    func login(_ username: String, _ password: String, completion:  @escaping (Bool) -> () ) {
+        
+        self.api.authenticate(username: username, password: password) { (user, error) in
+            guard let user = user else {
+                completion(false)
+//                fatalError(error!.localizedDescription)
+                return
+            }
+            
+            
+            self.setUser(to: user)
+            
+            let localUser = LocalUser(username: username, email: user.email, password: password)
+            self.setLocalUser(to: localUser)
+            
+            completion(true)
+            
+        }
+    }
     
     func createAccount(_ username: String, email: String, password: String, completion:  @escaping (Bool) -> () ) {
         
