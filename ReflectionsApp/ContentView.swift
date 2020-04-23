@@ -12,8 +12,21 @@ struct ContentView: View {
     
     @State private var isLoading: Bool = true
     @ObservedObject var anonymousModel = AnonymousUserObservableObject()
+    
+    @ViewBuilder
     var body: some View {
-        AnonymousUserView(model: self.anonymousModel)
+
+        LoadingView<AnyView>(isShowing: .init(get: {
+            return self.anonymousModel.isLoading
+        }, set: { val in
+            self.anonymousModel.isLoading = val
+        })) {
+            if !(self.anonymousModel.isAnonymous ?? true) {
+                 return AnyView( Text("asdads") )
+            } else {
+                return AnyView( AnonymousUserView(model: self.anonymousModel) )
+            }
+        }
     
     }
     

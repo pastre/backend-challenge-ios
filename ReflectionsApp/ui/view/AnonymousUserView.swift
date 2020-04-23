@@ -33,11 +33,6 @@ struct AnonymousUserView: View {
     
     var body: some View {
         GeometryReader { reader in
-            LoadingView(isShowing: .init(get: {
-                return self.model.isLoading
-            }, set: { val in
-                self.model.isLoading = val
-            })) {
                 VStack(alignment: .center) {
                     
                     TextField("Username", text: self.$username)
@@ -82,17 +77,9 @@ struct AnonymousUserView: View {
                 }
                 .padding(.horizontal, 40)
                 
-            }
-            .onAppear() {
-                self.updateAnonymousState()
-            }
-        }
-        .sheet(isPresented: .init(get: { () -> Bool in
-            return !(self.model.isAnonymous ?? true)
-        }, set: { (_) in
             
-        })) {
-            MainView()
+        }.onAppear() {
+            self.updateAnonymousState()
         }
     }
     
