@@ -13,7 +13,6 @@ struct ContentView: View {
     @State private var isLoading: Bool = true
     @ObservedObject var anonymousModel = AnonymousUserObservableObject()
     
-    @ViewBuilder
     var body: some View {
 
         LoadingView<AnyView>(isShowing: .init(get: {

@@ -33,71 +33,68 @@ struct AnonymousUserView: View {
     
     var body: some View {
         GeometryReader { reader in
-                VStack(alignment: .center) {
-                    
-                    TextField("Username", text: self.$username)
-                    .padding()
-                        .textFieldStyle(DefaultTextFieldStyle())
-                    .background(Color(self.lightGray))
-                    .cornerRadius(5)
-                    .padding(.bottom, 5)
-                    
-                    TextField("Email", text: self.$email)
-                    .padding()
-                    .background(Color(self.lightGray))
-                    .cornerRadius(5)
-                    .padding(.bottom, 20)
-                    
-                    SecureField("Password", text: self.$password)
+            VStack  {
+                if self.isCreatingAccount {
+                    VStack(alignment: .center) {
+                        
+                        TextField("Username", text: self.$username)
                         .padding()
+                            .textFieldStyle(DefaultTextFieldStyle())
                         .background(Color(self.lightGray))
+                        .cornerRadius(5)
                         .padding(.bottom, 5)
-        
-                    SecureField("Confirm your password", text: self.$confirmPassword)
+                        
+                        TextField("Email", text: self.$email)
                         .padding()
                         .background(Color(self.lightGray))
                         .cornerRadius(5)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 20)
                         
-                    Button(action: self.createAccountIfPossible) {
-                        Text("Create account").fontWeight(.light)
-                    }
-                        .font(.title)
-                        .padding(.bottom, 60)
-                        .disabled(!self.isFormOk)
-                    
-                    Group {
-                        VStack {
-                            Text("Already have an account?")
-                            Button(action: self.changeMode) {
-                                Text("Sign in")
-                            }
+                        SecureField("Password", text: self.$password)
+                            .padding()
+                            .background(Color(self.lightGray))
+                            .padding(.bottom, 5)
+            
+                        SecureField("Confirm your password", text: self.$confirmPassword)
+                            .padding()
+                            .background(Color(self.lightGray))
+                            .cornerRadius(5)
+                            .padding(.bottom, 40)
+                            
+                        Button(action: self.createAccountIfPossible) {
+                            Text("Create account").fontWeight(.light)
                         }
+                            .font(.title)
+                            .padding(.bottom, 60)
+                            .disabled(!self.isFormOk)
+                        
+                    }
+                .padding(.horizontal, 40)
+                } else {
+                    VStack {
+                        Text("faz login ae")
                     }
                 }
-                .padding(.horizontal, 40)
+
+                Group {
+                    VStack {
+                        
+                        Text("Already have an account?")
+                        Button(action: {
+                            self.isCreatingAccount.toggle()
+                        }) {
+                            Text("Sign in")
+                        }
+                        
+                    }
+                }
                 
-            
-        }.onAppear() {
-            self.updateAnonymousState()
-        }
-    }
-    
-    func updateAnonymousState() {
-        if let isAnonymous = self.model.isAnonymous {
-            print("Decidiu! Anonimo? ", isAnonymous)
-            self.isAuthenticated = !isAnonymous
-            
-            self.toggleMe.toggle()
+            }
         }
     }
     
     func createAccountIfPossible() {
         self.model.createAccount(self.username, email: self.email, password: self.password)
-    }
-    
-    func changeMode() {
-        
     }
 }
 
