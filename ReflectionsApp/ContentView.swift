@@ -21,7 +21,7 @@ struct ContentView: View {
             self.anonymousModel.isLoading = val
         })) {
             if !(self.anonymousModel.isAnonymous ?? true) {
-                 return AnyView( Text("asdads") )
+                 return AnyView( MainView() )
             } else {
                 return AnyView( AnonymousUserView(model: self.anonymousModel) )
             }

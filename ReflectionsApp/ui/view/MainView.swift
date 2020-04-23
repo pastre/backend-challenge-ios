@@ -11,8 +11,22 @@ import SwiftUI
 struct MainView: View {
     
     var body: some View {
-        VStack {
-            Text("MainView")
+        TabView {
+            FeedView()
+                .tabItem() {
+                    Text("Feed")
+                    Image(systemName: "house.fill")
+                }
+            
+            Text("asd").tabItem() {
+                Text("Search")
+                Image(systemName: "magnifyingglass")
+            }
+            
+            Text("asd").tabItem() {
+                Text("Profile")
+                Image(systemName: "person.fill")
+            }
         }
     }
 }

@@ -10,6 +10,13 @@ import Foundation
 
 class AnonymousUserObservableObject: ObservableObject {
     
+    private var dataFacade = DataFacade.instance
+    private var hasResolved: Bool = false
+    
+    @Published var isAnonymous: Bool? = nil
+    @Published var isLoading: Bool = false
+    
+    
     func login(_ username: String, _ password: String) {
         self.isLoading = true
         self.objectWillChange.send()
@@ -33,8 +40,6 @@ class AnonymousUserObservableObject: ObservableObject {
         }
     }
     
-    private var dataFacade = DataFacade.instance
-    private var hasResolved: Bool = false
     
     func resolveAuthentication() {
         
@@ -55,7 +60,5 @@ class AnonymousUserObservableObject: ObservableObject {
         self.resolveAuthentication()
     }
 
-    @Published var isAnonymous: Bool? = nil
-    @Published var isLoading: Bool = false
     
 }
