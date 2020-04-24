@@ -13,12 +13,16 @@ struct FeedView: View {
     @ObservedObject var model: ReflectionsObservableObject
     
     var body: some View {
-        List(self.model.reflections, id: \.id) { reflection in
-            ReflectionView(reflection: reflection)
+        NavigationView {
+            List(self.model.reflections, id: \.id) { reflection in
+                ReflectionTileView(reflection: reflection)
+                
             }
-            .onAppear() {
-                self.model.fetchPublicReflections()
-            }
+                .navigationBarTitle("Feed", displayMode: .inline)
+                .onAppear() {
+                    self.model.fetchPublicReflections()
+                }
+        }
     }
     
     

@@ -12,6 +12,7 @@ class ReflectionsObservableObject: ObservableObject {
     
     private var dataFacade = DataFacade.instance
     
+    @Published var userReflections: [Reflection] = []
     @Published var reflections: [Reflection] = []
     @Published var isLoading: Bool = false
     
@@ -23,6 +24,11 @@ class ReflectionsObservableObject: ObservableObject {
         self.dataFacade.loadReflections(onLoad: { (reflections) in
             
             self.reflections.append(contentsOf: reflections)
+            
+            self.reflections.sort { (r1, r2) -> Bool in
+                r1.createdAt > r2.createdAt
+            }
+            
             self.isLoading = false
             
             self.objectWillChange.send()
@@ -30,6 +36,9 @@ class ReflectionsObservableObject: ObservableObject {
         }) { (error) in
             print("Failed to fetch reflections!")
         }
-        
+    }
+    
+    func isOwned(_ reflection: Reflection) -> Bool {
+        return reflection.owner == self.dataFacade.getUser()
     }
 }

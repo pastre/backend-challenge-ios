@@ -14,7 +14,7 @@ struct LocalUser: Codable {
     var password: String!
 }
 
-struct User: Codable {
+struct User: Codable, Equatable {
     var username: String!
     var email: String!
     var id: Int

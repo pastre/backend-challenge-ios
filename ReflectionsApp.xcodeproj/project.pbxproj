@@ -24,7 +24,9 @@
 		D7A637A12450D40E00E6FED4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A02450D40E00E6FED4 /* MainView.swift */; };
 		D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A324520C2300E6FED4 /* FeedView.swift */; };
 		D7A637A624520CA100E6FED4 /* ReflectionsObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A524520CA100E6FED4 /* ReflectionsObservableObject.swift */; };
-		D7A637A8245222E100E6FED4 /* ReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A7245222E100E6FED4 /* ReflectionView.swift */; };
+		D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A7245222E100E6FED4 /* ReflectionTileView.swift */; };
+		D7A637AA245237BA00E6FED4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637A9245237BA00E6FED4 /* UserView.swift */; };
+		D7A637AC24535BB900E6FED4 /* ReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A637AB24535BB900E6FED4 /* ReflectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +50,9 @@
 		D7A637A02450D40E00E6FED4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D7A637A324520C2300E6FED4 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		D7A637A524520CA100E6FED4 /* ReflectionsObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionsObservableObject.swift; sourceTree = "<group>"; };
-		D7A637A7245222E100E6FED4 /* ReflectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionView.swift; sourceTree = "<group>"; };
+		D7A637A7245222E100E6FED4 /* ReflectionTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionTileView.swift; sourceTree = "<group>"; };
+		D7A637A9245237BA00E6FED4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		D7A637AB24535BB900E6FED4 /* ReflectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,9 +141,11 @@
 			isa = PBXGroup;
 			children = (
 				D7A63795244FE83700E6FED4 /* AnonymousUserView.swift */,
-				D7A637A02450D40E00E6FED4 /* MainView.swift */,
 				D7A637A324520C2300E6FED4 /* FeedView.swift */,
-				D7A637A7245222E100E6FED4 /* ReflectionView.swift */,
+				D7A637A02450D40E00E6FED4 /* MainView.swift */,
+				D7A637A7245222E100E6FED4 /* ReflectionTileView.swift */,
+				D7A637A9245237BA00E6FED4 /* UserView.swift */,
+				D7A637AB24535BB900E6FED4 /* ReflectionView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 				D7A63796244FE83700E6FED4 /* AnonymousUserView.swift in Sources */,
 				D7A637A12450D40E00E6FED4 /* MainView.swift in Sources */,
 				D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */,
+				D7A637AC24535BB900E6FED4 /* ReflectionView.swift in Sources */,
+				D7A637AA245237BA00E6FED4 /* UserView.swift in Sources */,
 				D7A63798244FE8A600E6FED4 /* AnonymousUserObservableObject.swift in Sources */,
 				D7A637A624520CA100E6FED4 /* ReflectionsObservableObject.swift in Sources */,
 				D7A6379F2450BDAE00E6FED4 /* DataFacade.swift in Sources */,
@@ -243,7 +251,7 @@
 				D7A6376A244E5B4E00E6FED4 /* Enums.swift in Sources */,
 				D7A6376C244E5B7300E6FED4 /* Models.swift in Sources */,
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
-				D7A637A8245222E100E6FED4 /* ReflectionView.swift in Sources */,
+				D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */,
 				D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */,
 				D7A6379B2450BCA700E6FED4 /* ActivityIndicator.swift in Sources */,
 				D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */,
