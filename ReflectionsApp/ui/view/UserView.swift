@@ -15,6 +15,10 @@ struct UserView: View {
     @State private var currentSelectedReflection: Reflection!
     @State private var isSheetPresented: Bool = false
     
+    @State private var isCreatingReflection: Bool = false
+    
+    @State private var isDirty: Bool = false
+
     var body: some View {
         NavigationView {
             List {
@@ -23,6 +27,8 @@ struct UserView: View {
                         .onTapGesture {
                             self.currentSelectedReflection = reflection
                             self.isSheetPresented = true
+                            self.isCreatingReflection = false
+                            self.isDirty.toggle()
                     }
                 }.onDelete() { set in
                     print("deletePls")
@@ -31,14 +37,19 @@ struct UserView: View {
         
             .navigationBarTitle("My Reflections", displayMode: .inline)
             .navigationBarItems(trailing: Button("New") {
-                print("NEWEEW")
+                self.isSheetPresented = true
+                self.isCreatingReflection = true
             })
                 
             .onAppear() {
                 self.model.fetchPublicReflections()
             }.sheet(isPresented: self.$isSheetPresented) {
+                if self.isCreatingReflection {
+                    CreateReflectionView(model: self.model, isPresented: self.$isSheetPresented)
+                } else {
+                    ReflectionView(reflection: self.currentSelectedReflection!)
+                }
                 
-                ReflectionView(reflection: self.currentSelectedReflection!)
                 
             }
         }

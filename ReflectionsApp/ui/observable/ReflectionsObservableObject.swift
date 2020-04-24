@@ -12,9 +12,26 @@ class ReflectionsObservableObject: ObservableObject {
     
     private var dataFacade = DataFacade.instance
     
-    @Published var userReflections: [Reflection] = []
+//    @Published var userReflections: [Reflection] = []
     @Published var reflections: [Reflection] = []
     @Published var isLoading: Bool = false
+    
+    func createReflection(title: String,  content: String,  isPublic: Bool) {
+        self.isLoading = true
+        self.objectWillChange.send()
+        
+        self.dataFacade.createReflection(title: title, content: content, isPublic: isPublic) { (reflection, error) in
+            if let reflection = reflection {
+                self.reflections.append(reflection)
+            }
+            
+            self.isLoading = false
+            self.objectWillChange.send()
+            
+            self.fetchPublicReflections()
+        }
+        
+    }
     
     func fetchPublicReflections() {
         
@@ -22,8 +39,11 @@ class ReflectionsObservableObject: ObservableObject {
         self.objectWillChange.send()
         
         self.dataFacade.loadReflections(onLoad: { (reflections) in
-            
-            self.reflections.append(contentsOf: reflections)
+            let diff = reflections.filter { (remoteReflection) -> Bool in
+                return !self.reflections.contains(remoteReflection)
+                
+            }
+            self.reflections.append(contentsOf: diff)
             
             self.reflections.sort { (r1, r2) -> Bool in
                 r1.createdAt > r2.createdAt

@@ -139,4 +139,11 @@ class DataFacade {
                 onLoad(reflections)
         }
     }
+    
+    func createReflection(title: String,  content: String,  isPublic: Bool, completion: @escaping (Reflection?, Error?) -> () ) {
+        
+        self.api.createReflection(title: title, content: content, isPublic: isPublic) {
+            completion($0, $1)
+        }
+    }
 }

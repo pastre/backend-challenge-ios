@@ -20,7 +20,7 @@ struct User: Codable, Equatable {
     var id: Int
 }
 
-struct Reflection: Codable {
+struct Reflection: Codable, Equatable {
 
     var title: String?
     var content: String!

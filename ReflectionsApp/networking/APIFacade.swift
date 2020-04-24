@@ -31,7 +31,8 @@ class APIFacade {
         
         
         self.session.dataTask(with: request) { data, response, error in
-            
+
+            print("[API] Recvd!", url)
             guard let data = data, let response = response as? HTTPURLResponse else {
                 
                 completion(nil, error)
@@ -65,7 +66,7 @@ class APIFacade {
             completion(nil, APIError.runtimeError(deserialized["payload"] as! String ))
             
         }.resume()
-        print("Fired!")
+        print("[API] Fired!", url)
         
     }
     
