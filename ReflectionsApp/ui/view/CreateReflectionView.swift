@@ -12,8 +12,10 @@ struct CreateReflectionView: View {
     
     @ObservedObject var model : ReflectionsObservableObject
     
-    @State private var title: String = ""
-    @State private var content: String = ""
+    @State var title: String = ""
+    @State var content: String = ""
+    
+    @State var isPublic: Bool? = nil
     
     @State private var isPresentingActionSheet: Bool = false
     

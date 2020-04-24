@@ -15,6 +15,8 @@ struct FeedView: View {
     @State private var currentSelectedReflection: Reflection!
     @State private var isSheetPresented: Bool = false
     
+    @State private var reflectionToEdit: Reflection?
+    
     var body: some View {
         NavigationView {
             List(self.model.reflections, id: \.id) { reflection in
@@ -28,12 +30,12 @@ struct FeedView: View {
             .navigationBarTitle("Feed", displayMode: .inline)
             .sheet(isPresented: self.$isSheetPresented) {
                 
-                ReflectionView(reflection: self.currentSelectedReflection!)
+                ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$reflectionToEdit)
                 
             }
-                .onAppear() {
-                    self.model.fetchPublicReflections()
-                }
+            .onAppear() {
+                self.model.fetchPublicReflections()
+            }
         }
     }
     

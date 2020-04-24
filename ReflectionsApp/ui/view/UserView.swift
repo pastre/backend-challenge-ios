@@ -18,6 +18,8 @@ struct UserView: View {
     @State private var isCreatingReflection: Bool = false
     
     @State private var isDirty: Bool = false
+    
+    @State private var refectionToEdit: Reflection?
 
     var body: some View {
         NavigationView {
@@ -49,7 +51,7 @@ struct UserView: View {
                 if self.isCreatingReflection {
                     CreateReflectionView(model: self.model, isPresented: self.$isSheetPresented)
                 } else {
-                    ReflectionView(reflection: self.currentSelectedReflection!)
+                    ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$refectionToEdit)
                 }
                 
                 

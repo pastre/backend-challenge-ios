@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class ReflectionsObservableObject: ObservableObject {
     
     private var dataFacade = DataFacade.instance
