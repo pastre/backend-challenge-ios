@@ -10,10 +10,12 @@ import SwiftUI
 
 struct ReflectionView: View {
     
+    
     var reflection: Reflection!
 
     @Binding var isShown: Bool
     @Binding var reflectionToEdit: Reflection?
+    
     
     var body: some View {
         NavigationView {

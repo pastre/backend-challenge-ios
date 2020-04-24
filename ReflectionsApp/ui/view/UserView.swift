@@ -49,7 +49,7 @@ struct UserView: View {
                 self.model.fetchPublicReflections()
             }.sheet(isPresented: self.$isSheetPresented) {
                 if self.isCreatingReflection {
-                    CreateReflectionView(model: self.model, isPresented: self.$isSheetPresented)
+                    CreateReflectionView(model: self.model, isPresented: self.$isSheetPresented, editingReflection: .init(get: { nil }, set: { _ in}))
                 } else {
                     ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$refectionToEdit)
                 }

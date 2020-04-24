@@ -10,23 +10,41 @@ import SwiftUI
 
 struct CreateReflectionView: View {
     
+    var isEditing: Bool = false
+    
     @ObservedObject var model : ReflectionsObservableObject
     
     @State var title: String = ""
     @State var content: String = ""
     
-    @State var isPublic: Bool? = nil
+    @State var isPublic: Bool = false
     
     @State private var isPresentingActionSheet: Bool = false
     
     @Binding var isPresented: Bool
+    @Binding var editingReflection: Reflection?
     
     var body: some View {
         NavigationView  {
             VStack {
-                
+                if self.isEditing {
+                    
+                        Toggle(isOn: self.$isPublic) {
+                            Text("Public visibility")
+                    }
+                .padding()
+                    Divider()
+                    
+                    
+                }
                 TextField("Title", text: self.$title)
                     .padding()
+                
+                if self.isEditing {
+                    Divider()
+                    
+                    
+                }
                 
                 TextField("Your reflection", text: self.$content)
                     .padding()
@@ -46,11 +64,15 @@ struct CreateReflectionView: View {
                     
                 ])
             }
-            .navigationBarTitle(Text("New Reflection"), displayMode: .inline)
-            .navigationBarItems(trailing: Button("Create") {
+            .navigationBarTitle(Text((self.isEditing ? "Edit" : "New") +  " Reflection"), displayMode: .inline)
+            .navigationBarItems( trailing: Button(self.isEditing ? "Done" : "Create") {
                 self.isPresentingActionSheet = true
             }.disabled(self.title.count < 5 || self.content.count < 5))
-           
+//                .onAppear() {
+//                    if self.isEditing {
+//                        self.editingReflection = nil
+//                    }
+//            }
             
         }
     }
@@ -63,6 +85,6 @@ struct CreateReflectionView_Previews: PreviewProvider {
             return true
         }, set: { (_) in
             
-        }))
+        }), editingReflection:  .init(get: { nil }, set: { _ in }))
     }
 }
