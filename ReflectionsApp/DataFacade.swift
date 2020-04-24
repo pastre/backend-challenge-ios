@@ -146,4 +146,10 @@ class DataFacade {
             completion($0, $1)
         }
     }
+    
+    func deleteReflection(reflection: Reflection, completion: @escaping (Error?) -> () ) {
+        self.api.deleteReflection(reflectionId: reflection.id) { (reflections, error) in
+            completion(error)
+        }
+    }
 }

@@ -31,7 +31,10 @@ struct UserView: View {
                             self.isDirty.toggle()
                     }
                 }.onDelete() { set in
-                    print("deletePls")
+                    set.forEach {
+                        let reflection = self.model.reflections[$0]
+                        self.model.deleteReflection(reflection)
+                    }
                 }
             }
         
@@ -40,7 +43,6 @@ struct UserView: View {
                 self.isSheetPresented = true
                 self.isCreatingReflection = true
             })
-                
             .onAppear() {
                 self.model.fetchPublicReflections()
             }.sheet(isPresented: self.$isSheetPresented) {
@@ -56,8 +58,3 @@ struct UserView: View {
     }
 }
 
-struct UserView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}

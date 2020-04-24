@@ -33,6 +33,19 @@ class ReflectionsObservableObject: ObservableObject {
         
     }
     
+    func deleteReflection(_ reflection: Reflection) {
+        self.isLoading = true
+        self.objectWillChange.send()
+        self.dataFacade.deleteReflection(reflection: reflection) { error in
+            if let _ = error { return }
+            
+            self.reflections.removeAll { $0 == reflection }
+            
+            self.fetchPublicReflections()
+            
+        }
+    }
+    
     func fetchPublicReflections() {
         
         self.isLoading = self.reflections.isEmpty
