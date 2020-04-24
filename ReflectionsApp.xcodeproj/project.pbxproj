@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */; };
 		D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63751244E3EC100E6FED4 /* AppDelegate.swift */; };
 		D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */; };
 		D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63755244E3EC100E6FED4 /* ContentView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReflectionView.swift; sourceTree = "<group>"; };
 		D7A6374E244E3EC100E6FED4 /* ReflectionsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReflectionsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A63751244E3EC100E6FED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				D7A637AB24535BB900E6FED4 /* ReflectionView.swift */,
 				D7A637A7245222E100E6FED4 /* ReflectionTileView.swift */,
 				D7A637A9245237BA00E6FED4 /* UserView.swift */,
+				D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
 				D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */,
 				D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */,
+				D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */,
 				D7A6379B2450BCA700E6FED4 /* ActivityIndicator.swift in Sources */,
 				D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */,
 			);
