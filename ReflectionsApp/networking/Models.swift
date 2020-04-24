@@ -35,4 +35,9 @@ struct Reflection: Codable {
         
         return formatter.string(from: self.createdAt)
     }
+    
+    func isOwned()-> Bool {
+        guard let user = DataFacade.instance.getUser() else { return false }
+        return user == self.owner
+    }
 }

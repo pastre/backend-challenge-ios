@@ -17,15 +17,23 @@ struct UserView: View {
     
     var body: some View {
         NavigationView {
-
-            List(self.model.reflections.filter { self.model.isOwned($0) } , id: \.id) { reflection in
-                ReflectionTileView(reflection: reflection)
-                    .onTapGesture {
-                        self.currentSelectedReflection = reflection
-                        self.isSheetPresented = true
+            List {
+                ForEach(self.model.reflections.filter { self.model.isOwned($0) } , id: \.id) { reflection in
+                    ReflectionTileView(reflection: reflection)
+                        .onTapGesture {
+                            self.currentSelectedReflection = reflection
+                            self.isSheetPresented = true
+                    }
+                }.onDelete() { set in
+                    print("deletePls")
                 }
             }
+        
             .navigationBarTitle("My Reflections", displayMode: .inline)
+            .navigationBarItems(trailing: Button("New") {
+                print("NEWEEW")
+            })
+                
             .onAppear() {
                 self.model.fetchPublicReflections()
             }.sheet(isPresented: self.$isSheetPresented) {
@@ -34,5 +42,11 @@ struct UserView: View {
                 
             }
         }
+    }
+}
+
+struct UserView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
