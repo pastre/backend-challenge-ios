@@ -150,7 +150,30 @@ class APIFacade {
         
         let body = try! JSONSerialization.data(withJSONObject: dict, options: [])
         
-        self.request(.reflections, .POST, body: body) { (data, error) in
+        self.request(.reflections, .PUT, body: body) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
+    
+    func updateReflection(_ id: Int, title: String? = nil,  content: String? = nil , isPublic: Bool? = nil, completion: @escaping (Reflection?, Error?) -> ()) {
+        var dict: [String: Any] =  [String: Any]()
+        let url = Endpoint.reflections.getURLString() + "/\(id)"
+        
+        if let title = title {
+            dict["title"] = title
+        }
+        
+        if let content = content {
+            dict["content"] = content
+        }
+        
+        if let isPublic = isPublic {
+            dict["isPublic"] = isPublic
+        }
+        
+        let body = try! JSONSerialization.data(withJSONObject: dict, options: [])
+        
+        self.request(URL(string: url)!, .POST, body: body) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
     }

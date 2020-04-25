@@ -34,6 +34,27 @@ class ReflectionsObservableObject: ObservableObject {
         
     }
     
+    func updateReflection(_ reflection: Reflection, title: String, content: String, isPublic: Bool) {
+        self.isLoading = true
+        self.objectWillChange.send()
+        
+        let newTitle = reflection.title == title ? nil : title
+        let newContent = reflection.content == content ? nil : content
+        let newPublicFlag = reflection.isPublic == isPublic ? nil : isPublic
+        
+        self.dataFacade.updateReflection(reflection.id, title: newTitle, content: newContent, isPublic: newPublicFlag) { (reflection, error) in
+            if let reflection = reflection {
+                self.reflections.removeAll { $0.id == reflection.id }
+                self.reflections.append(reflection)
+
+                self.sortReflections()
+                
+                self.isLoading = false
+                self.objectWillChange.send()
+            }
+        }
+    }
+    
     func deleteReflection(_ reflection: Reflection) {
         self.isLoading = true
         self.objectWillChange.send()
@@ -59,9 +80,7 @@ class ReflectionsObservableObject: ObservableObject {
             }
             self.reflections.append(contentsOf: diff)
             
-            self.reflections.sort { (r1, r2) -> Bool in
-                r1.createdAt > r2.createdAt
-            }
+            self.sortReflections()
             
             self.isLoading = false
             
@@ -74,5 +93,12 @@ class ReflectionsObservableObject: ObservableObject {
     
     func isOwned(_ reflection: Reflection) -> Bool {
         return reflection.owner == self.dataFacade.getUser()
+    }
+    
+    func sortReflections() {
+
+        self.reflections.sort { (r1, r2) -> Bool in
+            r1.createdAt > r2.createdAt
+        }
     }
 }
