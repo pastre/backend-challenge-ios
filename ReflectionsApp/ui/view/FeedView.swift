@@ -37,6 +37,7 @@ struct FeedView: View {
                 if self.reflectionObservableObject.isEditing {
                     
                     CreateReflectionView(isEditing: true, model: self.model, reflectionObservableObject: self.reflectionObservableObject, title: self.reflectionObservableObject.editingReflection!.title ?? "", content: self.reflectionObservableObject.editingReflection!.content, isPublic: self.reflectionObservableObject.editingReflection!.isPublic)
+                    
                 } else {
                     
                     ReflectionView(reflection: self.currentSelectedReflection!, reflectionObservableObject: self.reflectionObservableObject)

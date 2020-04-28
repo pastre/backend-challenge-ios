@@ -12,10 +12,9 @@ struct UserView: View {
     
     @ObservedObject var model : ReflectionsObservableObject
     
-    @ObservedObject var reflectionObservableObject = ReflectionNavigationCoordinator()
+    @ObservedObject var reflectionObservableObject: ReflectionNavigationCoordinator = ReflectionNavigationCoordinator()
     
     @State private var currentSelectedReflection: Reflection!
-    @State private var isSheetPresented: Bool = false
     
     @State private var isCreatingReflection: Bool = false
     
@@ -40,28 +39,32 @@ struct UserView: View {
         
             .navigationBarTitle("My Reflections", displayMode: .inline)
             .navigationBarItems(trailing: Button("New") {
-                self.isSheetPresented = true
                 self.isCreatingReflection = true
+                self.reflectionObservableObject.presentReflection()
             })
             .onAppear() {
                 self.model.fetchPublicReflections()
             }
             .sheet(isPresented: .init(get: { () -> Bool in
                 self.reflectionObservableObject.isPresenting
-            }, set: { (value) in
-                self.reflectionObservableObject.updatePresenting(value)
-            }) ) {
+            }, set: { (val) in
+                self.reflectionObservableObject.updatePresenting(val)
+            }), onDismiss: {
+                self.isCreatingReflection = false
+            }) {
                 
+                if self.isCreatingReflection {
+                    CreateReflectionView(isEditing: false, model: self.model, reflectionObservableObject: self.reflectionObservableObject)
+                } else if self.reflectionObservableObject.isEditing {
+            
+                    CreateReflectionView(isEditing: true, model: self.model, reflectionObservableObject: self.reflectionObservableObject, title: self.reflectionObservableObject.editingReflection!.title ?? "", content: self.reflectionObservableObject.editingReflection!.content, isPublic: self.reflectionObservableObject.editingReflection!.isPublic)
                 
-//                if self.isCreatingReflection {
-//                    CreateReflectionView(isEditing: self.model, model: .init(get: { nil }, set: { _ in}), reflectionObservableObject: self.reflectionObservableObject)
-//                } else {
-//                    ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$refectionToEdit)
-//                }
-                Text("lkjhgfd")
+                }
+                else {
+                    ReflectionView(reflection: self.currentSelectedReflection!, reflectionObservableObject: self.reflectionObservableObject)
+                }
                 
             }
-            
         }
     }
 }

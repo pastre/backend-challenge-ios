@@ -20,6 +20,7 @@ class ReflectionNavigationCoordinator: ObservableObject {
         self.objectWillChange.send()
         self.isPresenting = false
         self.objectWillChange.send()
+        
     }
     
     func presentReflection() {
