@@ -13,7 +13,7 @@ struct CreateReflectionView: View {
     var isEditing: Bool = false
     
     @ObservedObject var model : ReflectionsObservableObject
-    @ObservedObject var reflectionObservableObject: ReflectionObservableObject
+    @ObservedObject var reflectionObservableObject: ReflectionNavigationCoordinator
     
     @State var title: String = ""
     @State var content: String = ""

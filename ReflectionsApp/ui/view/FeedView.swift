@@ -12,7 +12,7 @@ struct FeedView: View {
     
     @ObservedObject var model: ReflectionsObservableObject
     
-    @ObservedObject var reflectionObservableObject = ReflectionObservableObject()
+    @ObservedObject var reflectionObservableObject = ReflectionNavigationCoordinator()
     
     @State private var currentSelectedReflection: Reflection!
 //    @State private var isSheetPresented: Bool = false

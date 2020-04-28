@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class ReflectionObservableObject: ObservableObject {
+class ReflectionNavigationCoordinator: ObservableObject {
     
     @Published var isPresenting: Bool = false
     @Published var isEditing: Bool = false

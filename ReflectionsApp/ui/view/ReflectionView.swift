@@ -13,7 +13,7 @@ struct ReflectionView: View {
     
     var reflection: Reflection!
     
-    @ObservedObject var reflectionObservableObject = ReflectionObservableObject()
+    @ObservedObject var reflectionObservableObject = ReflectionNavigationCoordinator()
     
     var body: some View {
         NavigationView {
