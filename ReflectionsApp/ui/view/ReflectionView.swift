@@ -12,10 +12,8 @@ struct ReflectionView: View {
     
     
     var reflection: Reflection!
-
-    @Binding var isShown: Bool
-    @Binding var reflectionToEdit: Reflection?
     
+    @ObservedObject var reflectionObservableObject = ReflectionObservableObject()
     
     var body: some View {
         NavigationView {
@@ -41,19 +39,18 @@ struct ReflectionView: View {
             }
             .navigationBarTitle(self.reflection.title ?? "(no title)")
             .navigationBarItems(trailing:  self.reflection.isOwned() ? AnyView(Button("Edit") {
-                self.reflectionToEdit = self.reflection
-                self.isShown = false
+                self.reflectionObservableObject.editReflection(self.reflection)
             }) : AnyView(Color.clear))
         }
     }
 }
 
-
-
-struct ReflectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReflectionView(reflection: Reflection(title: "assdasdasd", content: "lhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfd", createdAt: .init(), owner: User(username: ";lkjhgfdfghjkl", email: "lkjhghjkL@lkjbhjkl", id: 109), isPublic: true, id: 100), isShown: .init(get: { true }, set: { (_) in }), reflectionToEdit: .init(get: { nil }, set: { _ in  }))
-    }
-}
+//
+//
+//struct ReflectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReflectionView(reflection: Reflection(title: "assdasdasd", content: "lhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfdlhgfdfghjkligfd", createdAt: .init(), owner: User(username: ";lkjhgfdfghjkl", email: "lkjhghjkL@lkjbhjkl", id: 109), isPublic: true, id: 100), isShown: .init(get: { true }, set: { (_) in }), reflectionToEdit: .init(get: { nil }, set: { _ in  }))
+//    }
+//}
 
 

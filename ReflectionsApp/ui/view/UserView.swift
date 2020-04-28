@@ -12,12 +12,12 @@ struct UserView: View {
     
     @ObservedObject var model : ReflectionsObservableObject
     
+    @ObservedObject var reflectionObservableObject = ReflectionObservableObject()
+    
     @State private var currentSelectedReflection: Reflection!
     @State private var isSheetPresented: Bool = false
     
     @State private var isCreatingReflection: Bool = false
-    
-    @State private var isDirty: Bool = false
     
     @State private var refectionToEdit: Reflection?
 
@@ -28,9 +28,7 @@ struct UserView: View {
                     ReflectionTileView(reflection: reflection)
                         .onTapGesture {
                             self.currentSelectedReflection = reflection
-                            self.isSheetPresented = true
-                            self.isCreatingReflection = false
-                            self.isDirty.toggle()
+                            self.reflectionObservableObject.presentReflection()
                     }
                 }.onDelete() { set in
                     set.forEach {
@@ -47,15 +45,23 @@ struct UserView: View {
             })
             .onAppear() {
                 self.model.fetchPublicReflections()
-            }.sheet(isPresented: self.$isSheetPresented) {
-                if self.isCreatingReflection {
-                    CreateReflectionView(model: self.model, isPresented: self.$isSheetPresented, editingReflection: .init(get: { nil }, set: { _ in}))
-                } else {
-                    ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$refectionToEdit)
-                }
+            }
+            .sheet(isPresented: .init(get: { () -> Bool in
+                self.reflectionObservableObject.isPresenting
+            }, set: { (value) in
+                self.reflectionObservableObject.updatePresenting(value)
+            }) ) {
                 
+                
+//                if self.isCreatingReflection {
+//                    CreateReflectionView(isEditing: self.model, model: .init(get: { nil }, set: { _ in}), reflectionObservableObject: self.reflectionObservableObject)
+//                } else {
+//                    ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$refectionToEdit)
+//                }
+                Text("lkjhgfd")
                 
             }
+            
         }
     }
 }

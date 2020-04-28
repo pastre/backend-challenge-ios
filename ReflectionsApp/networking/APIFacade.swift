@@ -173,7 +173,7 @@ class APIFacade {
         
         let body = try! JSONSerialization.data(withJSONObject: dict, options: [])
         
-        self.request(URL(string: url)!, .POST, body: body) { (data, error) in
+        self.request(URL(string: url)!, .PUT, body: body) { (data, error) in
             self.validateAndCompleteRequest(data: data, error: error, completion: completion)
         }
     }

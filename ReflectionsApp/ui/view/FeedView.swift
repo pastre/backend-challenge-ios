@@ -12,12 +12,12 @@ struct FeedView: View {
     
     @ObservedObject var model: ReflectionsObservableObject
     
+    @ObservedObject var reflectionObservableObject = ReflectionObservableObject()
+    
     @State private var currentSelectedReflection: Reflection!
-    @State private var isSheetPresented: Bool = false
+//    @State private var isSheetPresented: Bool = false
     
     @State private var isEditing: Bool = false
-    
-    @State private var reflectionToEdit: Reflection?
     
     var body: some View {
         NavigationView {
@@ -25,28 +25,21 @@ struct FeedView: View {
                 ReflectionTileView(reflection: reflection)
                     .onTapGesture {
                         self.currentSelectedReflection = reflection
-                        self.isSheetPresented = true
+                        self.reflectionObservableObject.presentReflection()
                 }
                 
             }
             .navigationBarTitle("Feed", displayMode: .inline)
-            .sheet(isPresented: self.$isSheetPresented, onDismiss: {
-                if self.isEditing {
-                    self.reflectionToEdit = nil
-                    self.isEditing = false
-                } else {
-                    self.isSheetPresented = self.reflectionToEdit != nil
-                    self.isEditing = true
-                }
-                
+            .sheet(isPresented: .init(get:  { self.reflectionObservableObject.isPresenting }, set: self.reflectionObservableObject.updatePresenting(_:)), onDismiss: {
+                print("dismissed")
             }) {
                 
-                if self.reflectionToEdit != nil {
+                if self.reflectionObservableObject.isEditing {
                     
-                CreateReflectionView(isEditing: true, model: self.model, title: self.reflectionToEdit!.title ?? "", content: self.reflectionToEdit!.content, isPublic: self.reflectionToEdit!.isPublic, isPresented: self.$isSheetPresented, editingReflection: self.$reflectionToEdit)
+                    CreateReflectionView(isEditing: true, model: self.model, reflectionObservableObject: self.reflectionObservableObject, title: self.reflectionObservableObject.editingReflection!.title ?? "", content: self.reflectionObservableObject.editingReflection!.content, isPublic: self.reflectionObservableObject.editingReflection!.isPublic)
                 } else {
                     
-                    ReflectionView(reflection: self.currentSelectedReflection!, isShown: self.$isSheetPresented, reflectionToEdit: self.$reflectionToEdit)
+                    ReflectionView(reflection: self.currentSelectedReflection!, reflectionObservableObject: self.reflectionObservableObject)
                 }
                 
                 

@@ -13,6 +13,7 @@ struct CreateReflectionView: View {
     var isEditing: Bool = false
     
     @ObservedObject var model : ReflectionsObservableObject
+    @ObservedObject var reflectionObservableObject: ReflectionObservableObject
     
     @State var title: String = ""
     @State var content: String = ""
@@ -21,8 +22,6 @@ struct CreateReflectionView: View {
     
     @State private var isPresentingActionSheet: Bool = false
     
-    @Binding var isPresented: Bool
-    @Binding var editingReflection: Reflection?
     
     var body: some View {
         NavigationView  {
@@ -54,11 +53,11 @@ struct CreateReflectionView: View {
                 ActionSheet(title: Text("Create your reflection"), message: nil, buttons: [
                     
                     ActionSheet.Button.default(Text("Share publicly")) {
-                        self.isPresented = false
+                        self.reflectionObservableObject.dismiss()
                         self.model.createReflection(title: self.title, content: self.content, isPublic: true)
                     },
                     ActionSheet.Button.default(Text("Share privately")) {
-                        self.isPresented = false
+                        self.reflectionObservableObject.dismiss()
                         self.model.createReflection(title: self.title, content: self.content, isPublic: false)
                     }
                     
@@ -66,7 +65,12 @@ struct CreateReflectionView: View {
             }
             .navigationBarTitle(Text((self.isEditing ? "Edit" : "New") +  " Reflection"), displayMode: .inline)
             .navigationBarItems( trailing: Button(self.isEditing ? "Done" : "Create") {
-                self.isPresentingActionSheet = true
+                if self.isEditing {
+                    self.model.updateReflection(self.reflectionObservableObject.editingReflection, title: self.title, content: self.content, isPublic: self.isPublic)
+                    self.reflectionObservableObject.dismiss()
+                } else {
+                    self.isPresentingActionSheet = true
+                }
             }.disabled(self.title.count < 5 || self.content.count < 5))
 //                .onAppear() {
 //                    if self.isEditing {
@@ -78,13 +82,3 @@ struct CreateReflectionView: View {
     }
 }
 
-struct CreateReflectionView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        CreateReflectionView(model: ReflectionsObservableObject(), isPresented: .init(get: { () -> Bool in
-            return true
-        }, set: { (_) in
-            
-        }), editingReflection:  .init(get: { nil }, set: { _ in }))
-    }
-}

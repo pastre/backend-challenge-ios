@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D71CD53B2458A9040057CEF6 /* ReflectionObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CD53A2458A9040057CEF6 /* ReflectionObservableObject.swift */; };
 		D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */; };
 		D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63751244E3EC100E6FED4 /* AppDelegate.swift */; };
 		D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D71CD53A2458A9040057CEF6 /* ReflectionObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionObservableObject.swift; sourceTree = "<group>"; };
 		D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReflectionView.swift; sourceTree = "<group>"; };
 		D7A6374E244E3EC100E6FED4 /* ReflectionsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReflectionsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A63751244E3EC100E6FED4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				D7A63797244FE8A600E6FED4 /* AnonymousUserObservableObject.swift */,
 				D7A637A524520CA100E6FED4 /* ReflectionsObservableObject.swift */,
+				D71CD53A2458A9040057CEF6 /* ReflectionObservableObject.swift */,
 			);
 			path = observable;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */,
 				D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */,
 				D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */,
+				D71CD53B2458A9040057CEF6 /* ReflectionObservableObject.swift in Sources */,
 				D7A6379B2450BCA700E6FED4 /* ActivityIndicator.swift in Sources */,
 				D7A63756244E3EC100E6FED4 /* ContentView.swift in Sources */,
 			);
