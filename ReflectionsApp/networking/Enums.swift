@@ -27,10 +27,11 @@ enum Endpoint: String {
     case auth
     case users
     case search
+    case signInWithApple = "auth/apple"
     
     func getURLString() -> String {
-                    "https://ada-backend-challenge.herokuapp.com/api/"
-//        "http://192.168.100.34:8000/api/"
+//                    "https://ada-backend-challenge.herokuapp.com/api/"
+        "http://192.168.100.34:8000/api/"
             + self.rawValue
     }
     

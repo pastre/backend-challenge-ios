@@ -16,7 +16,21 @@ class AnonymousUserObservableObject: ObservableObject {
     @Published var isAnonymous: Bool? = nil
     @Published var isLoading: Bool = false
     
-    
+//    func on2FASuccess() {
+//
+//        self.isLoading = true
+//        self.objectWillChange.send()
+//
+//        self.dataFacade.login(username, password) { (success) in
+//            if !success { return }
+//
+//            self.resolveAuthentication()
+//            self.isLoading = false
+//            self.objectWillChange.send()
+//        }
+//
+//    }
+//
     func login(_ username: String, _ password: String) {
         self.isLoading = true
         self.objectWillChange.send()
@@ -40,13 +54,17 @@ class AnonymousUserObservableObject: ObservableObject {
         }
     }
     
+    func startApple2fa(){
+        self.isLoading = true
+        self.objectWillChange.send()
+    }
     
     func resolveAuthentication() {
         
         self.isAnonymous  = nil
         self.objectWillChange.send()
         
-        if let _ = self.dataFacade.getLocalUser() {
+        if let _ = self.dataFacade.getUser() {
             self.isAnonymous = false
         } else {
             self.isAnonymous = true

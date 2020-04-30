@@ -10,6 +10,14 @@
 		D71B5353245A77770053123F /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5352245A77770053123F /* LocalUser.swift */; };
 		D71B5355245A77850053123F /* AppleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5354245A77850053123F /* AppleUser.swift */; };
 		D71B5357245A779A0053123F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5356245A779A0053123F /* User.swift */; };
+		D71B5362245A79470053123F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B535E245A79470053123F /* UserData.swift */; };
+		D71B5363245A79470053123F /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B535F245A79470053123F /* UserDataKeychain.swift */; };
+		D71B5364245A79470053123F /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5360245A79470053123F /* Keychain.swift */; };
+		D71B5365245A79470053123F /* SharedWebCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5361245A79470053123F /* SharedWebCredential.swift */; };
+		D71B5367245A79570053123F /* EnvironmentWindowKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5366245A79570053123F /* EnvironmentWindowKey.swift */; };
+		D71B5369245A79650053123F /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5368245A79650053123F /* SignInWithApple.swift */; };
+		D71B536B245A796C0053123F /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B536A245A796C0053123F /* SignInWithAppleDelegates.swift */; };
+		D71B536D245A79750053123F /* UserAndPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B536C245A79750053123F /* UserAndPassword.swift */; };
 		D71CD53B2458A9040057CEF6 /* ReflectionNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CD53A2458A9040057CEF6 /* ReflectionNavigationCoordinator.swift */; };
 		D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */; };
 		D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A63751244E3EC100E6FED4 /* AppDelegate.swift */; };
@@ -38,6 +46,14 @@
 		D71B5352245A77770053123F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		D71B5354245A77850053123F /* AppleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUser.swift; sourceTree = "<group>"; };
 		D71B5356245A779A0053123F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D71B535E245A79470053123F /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		D71B535F245A79470053123F /* UserDataKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
+		D71B5360245A79470053123F /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		D71B5361245A79470053123F /* SharedWebCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedWebCredential.swift; sourceTree = "<group>"; };
+		D71B5366245A79570053123F /* EnvironmentWindowKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentWindowKey.swift; sourceTree = "<group>"; };
+		D71B5368245A79650053123F /* SignInWithApple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
+		D71B536A245A796C0053123F /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
+		D71B536C245A79750053123F /* UserAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAndPassword.swift; sourceTree = "<group>"; };
 		D71CD53A2458A9040057CEF6 /* ReflectionNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionNavigationCoordinator.swift; sourceTree = "<group>"; };
 		D72A7B3B245372FA007F9B57 /* CreateReflectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReflectionView.swift; sourceTree = "<group>"; };
 		D7A6374E244E3EC100E6FED4 /* ReflectionsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReflectionsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				D71B5351245A776F0053123F /* user */,
+				D7A6379E2450BDAE00E6FED4 /* DataFacade.swift */,
 				D7A6376B244E5B7300E6FED4 /* Reflection.swift */,
 			);
 			path = model;
@@ -93,6 +110,29 @@
 				D71B5356245A779A0053123F /* User.swift */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		D71B535A245A78CE0053123F /* signinwithapple */ = {
+			isa = PBXGroup;
+			children = (
+				D71B535D245A79470053123F /* CredentialStorage */,
+				D71B5368245A79650053123F /* SignInWithApple.swift */,
+				D71B536A245A796C0053123F /* SignInWithAppleDelegates.swift */,
+				D71B536C245A79750053123F /* UserAndPassword.swift */,
+				D71B5366245A79570053123F /* EnvironmentWindowKey.swift */,
+			);
+			path = signinwithapple;
+			sourceTree = "<group>";
+		};
+		D71B535D245A79470053123F /* CredentialStorage */ = {
+			isa = PBXGroup;
+			children = (
+				D71B535E245A79470053123F /* UserData.swift */,
+				D71B535F245A79470053123F /* UserDataKeychain.swift */,
+				D71B5360245A79470053123F /* Keychain.swift */,
+				D71B5361245A79470053123F /* SharedWebCredential.swift */,
+			);
+			path = CredentialStorage;
 			sourceTree = "<group>";
 		};
 		D7A63745244E3EC100E6FED4 = {
@@ -116,8 +156,8 @@
 			children = (
 				D71B5350245A77690053123F /* model */,
 				D7A63765244E3ED700E6FED4 /* networking */,
+				D71B535A245A78CE0053123F /* signinwithapple */,
 				D7A63793244FCF2400E6FED4 /* ui */,
-				D7A6379E2450BDAE00E6FED4 /* DataFacade.swift */,
 				D7A63751244E3EC100E6FED4 /* AppDelegate.swift */,
 				D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */,
 				D7A63755244E3EC100E6FED4 /* ContentView.swift */,
@@ -270,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7A63796244FE83700E6FED4 /* AnonymousUserView.swift in Sources */,
+				D71B536D245A79750053123F /* UserAndPassword.swift in Sources */,
 				D7A637A12450D40E00E6FED4 /* MainView.swift in Sources */,
 				D7A63767244E3EF000E6FED4 /* APIFacade.swift in Sources */,
 				D7A637AC24535BB900E6FED4 /* ReflectionView.swift in Sources */,
@@ -279,13 +320,20 @@
 				D7A6379F2450BDAE00E6FED4 /* DataFacade.swift in Sources */,
 				D71B5355245A77850053123F /* AppleUser.swift in Sources */,
 				D7A6379D2450BCD500E6FED4 /* LoadingView.swift in Sources */,
+				D71B5367245A79570053123F /* EnvironmentWindowKey.swift in Sources */,
+				D71B5369245A79650053123F /* SignInWithApple.swift in Sources */,
 				D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */,
 				D7A6376A244E5B4E00E6FED4 /* Enums.swift in Sources */,
 				D7A6376C244E5B7300E6FED4 /* Reflection.swift in Sources */,
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
+				D71B5364245A79470053123F /* Keychain.swift in Sources */,
 				D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */,
+				D71B5365245A79470053123F /* SharedWebCredential.swift in Sources */,
 				D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */,
 				D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */,
+				D71B5362245A79470053123F /* UserData.swift in Sources */,
+				D71B536B245A796C0053123F /* SignInWithAppleDelegates.swift in Sources */,
+				D71B5363245A79470053123F /* UserDataKeychain.swift in Sources */,
 				D71CD53B2458A9040057CEF6 /* ReflectionNavigationCoordinator.swift in Sources */,
 				D71B5357245A779A0053123F /* User.swift in Sources */,
 				D7A6379B2450BCA700E6FED4 /* ActivityIndicator.swift in Sources */,

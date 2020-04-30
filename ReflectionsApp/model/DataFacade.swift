@@ -72,14 +72,14 @@ class DataFacade {
     }
     
     
-    func setLocalUser(to newUser: LocalUser) {
-        self.storage.updateModel(.localUser, model: newUser)
-    }
-    
-    func getLocalUser() -> LocalUser? {
-        return self.storage.fetchModel(.localUser)
-    }
-    
+//    func setLocalUser(to newUser: LocalUser) {
+//        self.storage.updateModel(.localUser, model: newUser)
+//    }
+//    
+//    func getLocalUser() -> LocalUser? {
+//        return self.storage.fetchModel(.localUser)
+//    }
+//    
     func login(_ username: String, _ password: String, completion:  @escaping (Bool) -> () ) {
         
         self.api.authenticate(username: username, password: password) { (user, error) in
@@ -92,8 +92,6 @@ class DataFacade {
             
             self.setUser(to: user)
             
-            let localUser = LocalUser(username: username, email: user.email, password: password)
-            self.setLocalUser(to: localUser)
             
             completion(true)
             
@@ -112,8 +110,6 @@ class DataFacade {
             
             self.setUser(to: user)
             
-            let localUser = LocalUser(username: username, email: email, password: password)
-            self.setLocalUser(to: localUser)
             
             completion(true)
         }
@@ -158,4 +154,25 @@ class DataFacade {
             completion(error)
         }
     }
+    
+    func signInWithApple (identityToken: Data?, authorizationCode: Data?, username: String? = nil,  email: String? = nil, completion: @escaping (Bool) -> ()) throws {
+        
+        if let data = authorizationCode, let asStr = String(data: data, encoding: .utf8) {
+            
+            
+            self.api.signInWithApple(asStr, username: username) {user, error in
+                guard let user = user  else {
+                    print("FATAL", error!)
+                    completion(false)
+                    return
+                }
+                
+                self.setUser(to: user)
+                completion(true)
+            }
+        }
+    }
+    
+    
+    
 }
