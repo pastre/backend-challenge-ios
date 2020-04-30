@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D71B534C245A73AA0053123F /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B534B245A73AA0053123F /* SignInWithApple.swift */; };
-		D71B534F245A75100053123F /* SignInWithAppleDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B534E245A75100053123F /* SignInWithAppleDelegates.swift */; };
 		D71B5353245A77770053123F /* LocalUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5352245A77770053123F /* LocalUser.swift */; };
 		D71B5355245A77850053123F /* AppleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5354245A77850053123F /* AppleUser.swift */; };
 		D71B5357245A779A0053123F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B5356245A779A0053123F /* User.swift */; };
@@ -37,8 +35,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D71B534B245A73AA0053123F /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
-		D71B534E245A75100053123F /* SignInWithAppleDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleDelegates.swift; sourceTree = "<group>"; };
 		D71B5352245A77770053123F /* LocalUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalUser.swift; sourceTree = "<group>"; };
 		D71B5354245A77850053123F /* AppleUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleUser.swift; sourceTree = "<group>"; };
 		D71B5356245A779A0053123F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -80,14 +76,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D71B534D245A75000053123F /* signinwithapple */ = {
-			isa = PBXGroup;
-			children = (
-				D71B534B245A73AA0053123F /* SignInWithApple.swift */,
-			);
-			path = signinwithapple;
-			sourceTree = "<group>";
-		};
 		D71B5350245A77690053123F /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,8 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				D71B5350245A77690053123F /* model */,
-				D7A63793244FCF2400E6FED4 /* ui */,
 				D7A63765244E3ED700E6FED4 /* networking */,
+				D7A63793244FCF2400E6FED4 /* ui */,
 				D7A6379E2450BDAE00E6FED4 /* DataFacade.swift */,
 				D7A63751244E3EC100E6FED4 /* AppDelegate.swift */,
 				D7A63753244E3EC100E6FED4 /* SceneDelegate.swift */,
@@ -196,9 +184,7 @@
 		D7A637992450BC9B00E6FED4 /* representable */ = {
 			isa = PBXGroup;
 			children = (
-				D71B534D245A75000053123F /* signinwithapple */,
 				D7A637A224520C0200E6FED4 /* activityindicator */,
-				D71B534E245A75100053123F /* SignInWithAppleDelegates.swift */,
 			);
 			path = representable;
 			sourceTree = "<group>";
@@ -294,11 +280,9 @@
 				D71B5355245A77850053123F /* AppleUser.swift in Sources */,
 				D7A6379D2450BCD500E6FED4 /* LoadingView.swift in Sources */,
 				D7A63752244E3EC100E6FED4 /* AppDelegate.swift in Sources */,
-				D71B534C245A73AA0053123F /* SignInWithApple.swift in Sources */,
 				D7A6376A244E5B4E00E6FED4 /* Enums.swift in Sources */,
 				D7A6376C244E5B7300E6FED4 /* Reflection.swift in Sources */,
 				D7A63754244E3EC100E6FED4 /* SceneDelegate.swift in Sources */,
-				D71B534F245A75100053123F /* SignInWithAppleDelegates.swift in Sources */,
 				D7A637A8245222E100E6FED4 /* ReflectionTileView.swift in Sources */,
 				D7A637A424520C2300E6FED4 /* FeedView.swift in Sources */,
 				D72A7B3C245372FA007F9B57 /* CreateReflectionView.swift in Sources */,
