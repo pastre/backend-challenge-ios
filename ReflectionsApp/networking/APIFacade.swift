@@ -259,6 +259,23 @@ class APIFacade {
         }
         
     }
+    
+    func signInWithApple(_ code: String, username: String? = nil , completion: @escaping (User?, Error?) -> () ) {
+        var json = [
+            "authorizationCode" : code
+        ]
+        
+        if let uname = username {
+            json["username"] = uname
+        }
+        
+        let body = try! JSONSerialization.data(withJSONObject: json , options: [])
+    
+        
+        self.request(.signInWithApple, .POST, body: body) { (data, error) in
+            self.validateAndCompleteRequest(data: data, error: error, completion: completion)
+        }
+    }
 }
 
 
