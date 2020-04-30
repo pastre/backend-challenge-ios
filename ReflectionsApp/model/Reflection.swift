@@ -8,17 +8,6 @@
 
 import Foundation
 
-struct LocalUser: Codable {
-    var username: String!
-    var email: String!
-    var password: String!
-}
-
-struct User: Codable, Equatable {
-    var username: String!
-    var email: String!
-    var id: Int
-}
 
 struct Reflection: Codable, Equatable {
 

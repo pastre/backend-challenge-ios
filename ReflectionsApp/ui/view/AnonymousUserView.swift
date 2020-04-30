@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AuthenticationServices
 import SwiftUI
 
 struct AnonymousUserView: View {
@@ -71,7 +72,8 @@ struct AnonymousUserView: View {
                         
                     }
                 .padding(.horizontal, 40)
-                } else {
+                }
+                else {
                     VStack {
                         
                         TextField("Username", text: self.$username)
@@ -109,6 +111,9 @@ struct AnonymousUserView: View {
                     }
                 }
                 
+                SignInWithApple().onTapGesture {
+                    self.presentAppleLogin()
+                }
             }
         }
     }
@@ -119,6 +124,14 @@ struct AnonymousUserView: View {
     
     func loginIfPossible() {
         self.model.login(self.username, self.password)
+    }
+    
+    func presentAppleLogin() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        
+        request.requestedScopes = [.fullName,  .email]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
     }
 }
 
